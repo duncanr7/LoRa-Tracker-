@@ -17,8 +17,6 @@ led.direction = digitalio.Direction.OUTPUT
 RX = board.D0
 TX = board.D1
 
-test = "Hello World!"
-
 uart = busio.UART(TX, RX, baudrate=9600, timeout=100)
 
 gps = adafruit_gps.GPS(uart, debug=False)
@@ -49,7 +47,7 @@ ttn_config = TTN(devaddr, nwkey, app, country="US")
 lora = TinyLoRa(spi, cs, irq, rst, ttn_config)
 last_print = time.monotonic()
 # Data Packet to send to TTN
-data = bytearray(4)
+data = bytearray(8)
 while True:
     gps.update()
     current = time.monotonic()
@@ -61,16 +59,21 @@ while True:
             print("Waiting for fix...")
             continue
             # Encode payload as bytes
-        temp_val = int(gps.latitude * 100)
-        humid_val = int(gps.longitude * 100)
+        lat = int(gps.latitude * 1000000)
+        long = int(gps.longitude * -1000000)
 
-        data[0] = (temp_val >> 8) & 0xFF
-        data[1] = temp_val & 0xFF
-        data[2] = (humid_val >> 8) & 0xFF
-        data[3] = humid_val & 0xFF
+        data[0] = (lat >> 24) & 0xFF
+        data[1] = (lat >> 16) & 0xFF
+        data[2] = (lat >> 8) & 0xFF
+        data[3] = (lat >> 0) & 0xFF
 
-        # Send data packet
-        print("Sending packet...")
+        data[4] = (long >> 24) & 0xFF
+        data[5] = (long >> 16) & 0xFF
+        data[6] = (long >> 8) & 0xFF
+        data[7] = (long >> 0) & 0xFF
+
+        time.sleep(2)
+         #Send data packet
         lora.send_data(data, len(data), lora.frame_counter)
         print("Packet Sent!")
         led.value = True
