@@ -34,13 +34,13 @@ irq = digitalio.DigitalInOut(board.RFM9X_D0)
 rst = digitalio.DigitalInOut(board.RFM9X_RST)
 
 # TTN Device Address, 4 Bytes, MSB
-devaddr = bytearray([0x26, 0x02, 0x19, 0xA0])
+devaddr = bytearray([]) # input data from TTN network 
 
 # TTN Network Key, 16 Bytes, MSB
-nwkey = bytearray([0xBE, 0xC6, 0x42, 0x1A, 0x95, 0xD8, 0x14, 0xC3, 0xC0, 0x32, 0xCB, 0xF7, 0xFC, 0x6C, 0xF9, 0x7A])
+nwkey = bytearray([]) # input data from TTN network 
 
 # TTN Application Key, 16 Bytess, MSB
-app = bytearray([0xDF, 0xA3, 0x7C, 0x56, 0x8F, 0x3E, 0xDF, 0x5D, 0xC3, 0xDE, 0x6F, 0x7D, 0x59, 0x8F, 0x51, 0x05 ])
+app = bytearray([]) # input data from TTN network 
 
 ttn_config = TTN(devaddr, nwkey, app, country="US")
 
