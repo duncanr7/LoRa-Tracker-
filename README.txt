@@ -11,8 +11,8 @@ Project Goal
 
 Setting up Laird system 
 	
-	Username - BIGDAWG
-	Password - Ud4yton!
+	Username - 
+	Password - 
 
 	You will need to create an account on TTN (The Things Network ) to get this 
 	up and running. The quick start guide should be everything you need to get it
@@ -24,11 +24,11 @@ Setting up Feather M0 RFM9x
 
 	- For the new work being done we suggest two programs to be downloaded 
 		- Mu - is a simple code editor that is designed for circuit python 
-	if you want to use other code editors such as VScode this is possible but not 
-	recommended 
+	if you want to use other code editors such as VScode this is possible but is
+	with Mu.
 
 		-Bossa- This is how we load circuit python onto the device. Since this
-	feather is one of the new original ones it relies on bin files to load circuit 
+	feather is one of the original ones it relies on bin files to load circuit 
 	python onto the board. Bossa is the program that is used to do this, note this 
 	device has the ATSAMD21 chip so the offset should be 0x2000. Please see resources 
 	to find article explaining this in more detail. BE CAREFUL IF THIS IS NOT DONE 
